@@ -1,0 +1,92 @@
+{
+  "name": "electron-ts-vue",
+  "version": "0.1.0",
+  "description": "Electron-Typescript-Vue Starter.",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "jest",
+    "predev": "npm run compile:main && npm run compile:renderer",
+    "dev": "concurrently \"tsc --watch\" \"npm run compile:renderer -- --watch\" \"electron .\"",
+    "compile:main": "tsc",
+    "compile:renderer": "webpack --config ./task/webpack.config.js --hide-modules"
+  },
+  "keywords": [],
+  "author": "archco",
+  "license": "MIT",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^22.2.0",
+    "@vue/test-utils": "^1.0.0-beta.12",
+    "babel-jest": "^23.0.0-alpha.0",
+    "babel-preset-env": "^1.6.1",
+    "concurrently": "^3.5.1",
+    "cross-env": "^5.1.4",
+    "css-loader": "^0.28.11",
+    "electron": "^1.8.4",
+    "electron-builder": "^20.5.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "jest": "^22.4.2",
+    "node-sass": "^4.7.2",
+    "optimize-css-assets-webpack-plugin": "^4.0.0",
+    "postcss-loader": "^2.1.2",
+    "sass-loader": "^6.0.7",
+    "source-map-loader": "^0.2.3",
+    "spectron": "^3.8.0",
+    "style-loader": "^0.20.3",
+    "ts-jest": "^22.4.2",
+    "ts-loader": "^4.1.0",
+    "typescript": "^2.7.2",
+    "vue": "^2.5.16",
+    "vue-jest": "^2.2.1",
+    "vue-loader": "^14.2.1",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12",
+    "webpack-merge": "^4.1.2",
+    "webpack-notifier": "^1.6.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      "^.+\\.tsx?$": "ts-jest",
+      ".*\\.(vue)$": "vue-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node",
+      "vue"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "modules": false
+        }
+      ]
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "node": "current"
+              }
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

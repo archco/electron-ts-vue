@@ -2,4 +2,9 @@
 
 Electron-Typescript-Vue Starter.
 
-> **Postponed** 테스트 환경 구축에 문제가 있다. 보류 한다.
+``` sh
+git clone https://github.com/archco/electron-ts-vue.git
+cd electron-ts-vue
+npm install
+npm run dev
+```

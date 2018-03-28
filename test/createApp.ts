@@ -13,7 +13,7 @@ export default function createApp() {
   return new Application({
     path: electronPath,
     args: [rootDir],
-    env: { NODE_ENV: 'test' },
+    startTimeout: 10e3,
     waitTimeout: 10e3,
   });
 }

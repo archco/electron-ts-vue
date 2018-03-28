@@ -18,8 +18,10 @@ function createWindow() {
       slashes: true,
   }));
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  if (process.env.NODE_ENV === 'development') {
+    // Open the DevTools. Do not open it if env is test, it's for avoid occur problem when spectron testing.
+    mainWindow.webContents.openDevTools();
+  }
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {

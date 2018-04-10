@@ -2,22 +2,60 @@
   "name": "electron-ts-vue",
   "version": "0.1.0",
   "description": "Electron-Typescript-Vue Starter.",
+  "author": "archco",
+  "license": "MIT",
   "main": "dist/main.js",
   "scripts": {
+    "prebuild": "npm run compile:prod",
+    "build": "electron-builder",
+    "build:pack": "npm run build -- --dir",
     "predev": "npm run compile",
     "dev": "cross-env NODE_ENV=development concurrently \"tsc --watch\" \"npm run compile:renderer -- --watch\" \"electron .\"",
+    "precompile": "node task/copy-static-to-dist.js",
     "compile": "npm run compile:main && npm run compile:renderer",
     "compile:main": "tsc",
     "compile:renderer": "webpack --config ./task/webpack.config.js --hide-modules",
+    "precompile:prod": "node task/clear-dist.js",
+    "compile:prod": "cross-env NODE_ENV=production npm run compile",
     "test": "npm run test:unit && npm run test:e2e",
     "test:e2e": "jest test/feature",
     "test:unit": "jest test/unit"
   },
   "keywords": [],
-  "author": "archco",
-  "license": "MIT",
-  "directories": {
-    "test": "test"
+  "build": {
+    "productName": "electron-ts-vue",
+    "appId": "org.archco.electron-ts-vue",
+    "directories": {
+      "buildResources": "resources/**/*",
+      "output": "build"
+    },
+    "files": [
+      "dist/**/*"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
+    },
+    "mac": {
+      "icon": "resources/icons/icon-256.png"
+    },
+    "win": {
+      "icon": "resources/icons/icon-256.png"
+    },
+    "linux": {
+      "icon": "resources/icons/icon-256.png"
+    }
   },
   "dependencies": {},
   "devDependencies": {
@@ -31,6 +69,8 @@
     "electron": "^1.8.4",
     "electron-builder": "^20.8.2",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "fs-extra": "^5.0.0",
+    "glob": "^7.1.2",
     "jest": "^22.4.3",
     "node-sass": "^4.8.3",
     "optimize-css-assets-webpack-plugin": "^4.0.0",

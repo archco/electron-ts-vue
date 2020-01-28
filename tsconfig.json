@@ -8,6 +8,11 @@
     "sourceMap": true
   },
   "include": [
-    "src/main/**/*"
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "test/**/*.ts"
+  ],
+  "files": [
+    "src/vue-shims.d.ts"
   ]
 }

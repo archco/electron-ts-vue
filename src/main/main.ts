@@ -3,20 +3,23 @@ import * as path from 'path';
 import * as url from 'url';
 
 let mainWindow: Electron.BrowserWindow;
+const windowURL = process.env.NODE_ENV === 'development'
+  ? 'http://localhost:9080'
+  : `file://${__dirname}/index.html`;
 
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    height: 600,
-    width: 800,
+    height: 640,
+    width: 1024,
+    webPreferences: {
+      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js'),
+    },
   });
 
   // and load the index.html of the app.
-  mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
-    protocol: 'file:',
-    slashes: true,
-  }));
+  mainWindow.loadURL(windowURL);
 
   if (process.env.NODE_ENV === 'development') {
     // Open the DevTools. Do not open it if env is test, it's for avoid occur problem when spectron testing.

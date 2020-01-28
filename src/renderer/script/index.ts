@@ -1,5 +1,7 @@
 import Vue from 'vue';
-import App from './app.vue';
+import router from './router';
+import store from './store';
+import App from './App.vue';
 
 declare global {
   interface Window {
@@ -8,6 +10,7 @@ declare global {
 }
 
 window.vm = new Vue({
-  el: '#app',
+  router,
+  store,
   render: h => h(App),
-});
+}).$mount('#app');

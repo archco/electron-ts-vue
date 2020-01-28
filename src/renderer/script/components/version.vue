@@ -21,7 +21,7 @@ export default {
     return {
       versions: window.process.versions,
     };
-  },
+  }
 };
 </script>
 

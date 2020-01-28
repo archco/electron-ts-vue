@@ -2,6 +2,7 @@ const path = require('path');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -10,6 +11,7 @@ module.exports = {
     index: ['./src/renderer/style/index.scss', './src/renderer/script/index.ts'],
   },
   mode: env,
+  target: 'electron-renderer',
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: 'script.js',
@@ -71,6 +73,10 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({ filename: 'style.css' }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: path.resolve(__dirname, '../src/renderer/index.html')
+    }),
   ],
 }
 

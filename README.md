@@ -20,3 +20,9 @@ npm run dev
 | `npm run dev` | Running electron for development mode. |
 | `npm run compile` | Compiles source files. |
 | `npm test` | Testing e2e and unit. |
+
+## TODO
+
+- Test
+- reorganizing run scripts
+- electron-builder

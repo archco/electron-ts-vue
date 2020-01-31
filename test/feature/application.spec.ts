@@ -2,14 +2,16 @@ import createApp, { Application } from '../createApp';
 
 let app: Application;
 
-beforeEach(() => {
+beforeEach(async () => {
   app = createApp();
-  return app.start();
-}, 10e3);
+  await app.start();
+}, 20e3);
 
-afterEach(() => {
-  return app.stop();
-});
+afterEach(async () => {
+  if (app && app.isRunning()) {
+    await app.stop();
+  }
+}, 20e3);
 
 describe('#Application', () => {
   describe('Launch', () => {
@@ -21,6 +23,8 @@ describe('#Application', () => {
     it('window is visible.', async () => {
       const isVisible = await app.browserWindow.isVisible();
       expect(isVisible).toBeTruthy();
+      const title = await app.client.getTitle();
+      expect(title).toBe('electron-ts-vue');
     });
   });
 });

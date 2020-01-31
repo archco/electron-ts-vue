@@ -23,6 +23,4 @@ npm run dev
 
 ## TODO
 
-- Test
-- reorganizing run scripts
 - electron-builder
